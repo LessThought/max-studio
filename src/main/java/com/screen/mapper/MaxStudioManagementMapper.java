@@ -1,7 +1,7 @@
 package com.screen.mapper;
 
-import com.screen.pojo.MaxStudioManagement;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.screen.pojo.MaxStudioManagement;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -10,5 +10,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface MaxStudioManagementMapper extends BaseMapper<MaxStudioManagement> {
-
+    void saveScreen(MaxStudioManagement management);
 }

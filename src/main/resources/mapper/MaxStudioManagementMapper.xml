@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="mapper.MaxStudioManagementMapper">
+<mapper namespace="com.screen.mapper.MaxStudioManagementMapper">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.screen.pojo.MaxStudioManagement">
@@ -19,7 +19,7 @@
         id, screen_name, share_id, screen_url, screen_share, is_deleted, create_time, update_time
     </sql>
 
-    <insert id="insert" parameterType="saveScreen">
+    <insert id="saveScreen" parameterType="com.screen.pojo.MaxStudioManagement">
         insert into max_studio_management
         (id, screen_name, share_id, screen_url, screen_share, is_deleted, create_time, update_time)
         values (#{id}, #{screen_name}, #{share_id}, #{screen_url}, #{screen_share}, #{is_deleted}, #{create_time}, #{update_time})

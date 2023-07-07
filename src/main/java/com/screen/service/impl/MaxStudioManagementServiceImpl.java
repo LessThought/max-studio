@@ -41,11 +41,8 @@ public class MaxStudioManagementServiceImpl extends ServiceImpl<MaxStudioManagem
         }
 
         BeanUtils.copyProperties(managementDTO,maxStudioManagement);
-        maxStudioManagementMapper.insert(maxStudioManagement);
+        maxStudioManagementMapper.saveScreen(maxStudioManagement);
 
     }
-
-
-
 
 }
