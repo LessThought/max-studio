@@ -2,6 +2,7 @@ package com.screen.service;
 
 import com.screen.pojo.MaxStudioManagement;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.screen.pojo.dto.MaxStudioManagementDTO;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,4 +16,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MaxStudioManagementService extends IService<MaxStudioManagement> {
 
+    void saveScreen(MaxStudioManagementDTO managementDTO);
 }

@@ -33,6 +33,7 @@ public class MaxStudioManagementController {
 
         log.info("新增大屏：{}",managementDTO);
         //TODO
+        maxStudioManagementService.saveScreen(managementDTO);
         return R.success();
     }
 }

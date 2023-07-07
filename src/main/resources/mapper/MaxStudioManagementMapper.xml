@@ -19,4 +19,10 @@
         id, screen_name, share_id, screen_url, screen_share, is_deleted, create_time, update_time
     </sql>
 
+    <insert id="insert" parameterType="saveScreen">
+        insert into max_studio_management
+        (id, screen_name, share_id, screen_url, screen_share, is_deleted, create_time, update_time)
+        values (#{id}, #{screen_name}, #{share_id}, #{screen_url}, #{screen_share}, #{is_deleted}, #{create_time}, #{update_time})
+    </insert>
+
 </mapper>
