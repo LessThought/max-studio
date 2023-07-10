@@ -1,15 +1,14 @@
 package com.screen.pojo;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author 小柴
@@ -18,7 +17,7 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class MaxStudioManagement implements Serializable {
+public class MaxStudioScreen implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,36 +33,35 @@ public class MaxStudioManagement implements Serializable {
     private String screenName;
 
     /**
-     * 分享Id
+     * 大屏当前状态，1代表开发中，2代表测试中，3代表应用中
      */
-    private Long shareId;
+    private Integer currentStatus;
 
     /**
      * 大屏地址
      */
-    private String screenUrl;
+    private String accessAddress;
+
 
     /**
-     * 大屏分享 1：可分享 0：不可分享
+     * 逻辑删除
      */
-    private String screenShare;
-
-    /**
-     * 逻辑删除 1：已删除 0：没有删除
-     */
+    @TableLogic
     private Long isDeleted;
 
     /**
-     * 创建时间
+     * 所属的目录id
      */
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
+    private Integer catalogId;
 
     /**
-     * 更新时间
+     * 大屏创建时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
+    private LocalDateTime createTime;
 
+    /**
+     * 大屏更新时间
+     */
+    private LocalDateTime updateTime;
 
 }

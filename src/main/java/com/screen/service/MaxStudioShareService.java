@@ -15,4 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public interface MaxStudioShareService extends IService<MaxStudioShare> {
 
+
+    void addShare(Long screenId,String qrcodeAddress);
+
 }

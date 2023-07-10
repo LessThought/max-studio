@@ -4,9 +4,8 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Builder;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -16,8 +15,7 @@ import java.util.Date;
  * @since 2023-07-06
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
+@Builder
 public class MaxStudioShare implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,20 +26,20 @@ public class MaxStudioShare implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+//    /**
+//     * 分享id
+//     */
+//    private Long shareId;
     /**
-     * 目录ID
-     */
-    private Long catalogueId;
-
-    /**
-     * 大屏ID
+     * 大屏id，唯一
      */
     private Long screenId;
 
     /**
-     * 分享名称
+     * 二维码存放地址
      */
-    private String shareName;
+    private String qrcodeAddress;
+
 
     /**
      * 创建时间

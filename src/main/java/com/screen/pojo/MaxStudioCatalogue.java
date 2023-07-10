@@ -1,15 +1,13 @@
 package com.screen.pojo;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * @author 小柴
@@ -29,31 +27,23 @@ public class MaxStudioCatalogue implements Serializable {
     private Long id;
 
     /**
-     * 目录ID
-     */
-    private Long screenId;
-
-    /**
      * 目录名称
      */
-    private String screenName;
+    private String name;
 
     /**
-     * 目录级别
+     * 父节点id
      */
-    private Long catalogueLevel;
+    private Long pid;
 
     /**
      * 创建时间
      */
-    @TableField(fill = FieldFill.INSERT)
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 更新时间
      */
-    @TableField(fill = FieldFill.INSERT_UPDATE)
-    private Date updateTime;
-
+    private LocalDateTime updateTime;
 
 }
