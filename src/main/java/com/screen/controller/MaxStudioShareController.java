@@ -9,18 +9,23 @@ import com.screen.result.R;
 import com.screen.service.MaxStudioScreenService;
 import com.screen.service.MaxStudioShareService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * @author 小柴
  * @since 2023-07-06
  */
 @RestController
-@RequestMapping("/maxStudio/share")
+@RequestMapping("/screenShare")
 @Slf4j
 @Api(tags = "分享管理")
 public class MaxStudioShareController {
@@ -37,11 +42,13 @@ public class MaxStudioShareController {
      * @return
      */
     @PostMapping("/createLogoQRCodes")
-    public R<String> creatQRCodes(String url, String pictureFileName) {
+    @ApiOperation("增加分享")
+    public R<String> creatQRCodes(@RequestParam("url") String url, @RequestParam("name") String pictureFileName, HttpServletResponse response) {
         MaxStudioScreen maxStudioScreen = maxStudioScreenService.selectByUrl(url);
-
+        //二维码图片存放的本地路径
         String destPath = "D:\\SoftLocation\\Code\\picture\\" + pictureFileName + ".jpg";
         try {
+            //把url解析为二维码
             QrCodeUtils.encode(url, FileAddressConstant.LOCALPATH, destPath, true);
             Long id = maxStudioScreen.getId();
             MaxStudioShare maxStudioShare = MaxStudioShare.builder()
@@ -56,6 +63,14 @@ public class MaxStudioShareController {
             throw new RuntimeException(e);
         }
         return  R.success("添加分享成功");
+    }
+
+
+    @RequestMapping("/list")
+    @ApiOperation("分享列表")
+    public R<List<MaxStudioShare>> listShare() {
+        return R.success(maxStudioShareService.list());
+
     }
 }
 

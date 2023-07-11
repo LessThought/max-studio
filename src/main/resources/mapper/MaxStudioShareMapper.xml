@@ -13,7 +13,7 @@
 <!--    </insert>-->
 
     <insert id="addShare" parameterType="com.screen.pojo.MaxStudioShare">
-        insert into maxstudioshare
+        insert into max_studio_share
         (screen_id, qrcode_address)
         values
             (#{screenId},#{qrcodeAddress})

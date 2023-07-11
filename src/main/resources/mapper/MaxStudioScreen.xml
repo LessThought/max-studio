@@ -8,10 +8,31 @@
 <!--        values (#{id}, #{share_id}, #{screen_name}, #{screen_url}, #{screen_share}, #{is_deleted}, #{create_time}, #{update_time})-->
 <!--    </insert>-->
 
+    <!--根据URL查询大屏-->
     <select id="selectByUrl" resultType="com.screen.pojo.MaxStudioScreen">
-        select id,screen_name,catalog_id,current_status,access_address,is_deleted from maxstudioscreen
+        select id,screen_name,catalog_id,current_status,access_address,is_deleted from max_studio_screen
         where access_address = #{url}
     </select>
 
+    <select id="selectById" resultType="com.screen.pojo.MaxStudioScreen">
+        select id,screen_name,catalog_id,current_status,access_address,is_deleted from max_studio_screen
+        where catalog_id = #{catalog_id}
+    </select>
+
+    <select id="selectByPid" resultType="com.screen.pojo.MaxStudioScreen">
+        select id,screen_name,catalog_id,current_status,access_address,is_deleted from max_studio_screen
+        where catalog_id = #{parentId}
+    </select>
+
+    <delete id="removeByScreenPid">
+        delete
+        from max_studio_screen
+        where catalog_id = #{parentId}
+    </delete>
+
+    <select id="getByName" resultType="com.screen.pojo.MaxStudioScreen">
+        select id,screen_name,catalog_id,current_status,access_address,is_deleted from max_studio_screen
+        where screen_name = #{name}
+    </select>
 
 </mapper>

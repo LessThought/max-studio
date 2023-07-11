@@ -1,9 +1,12 @@
 package com.screen.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.screen.pojo.MaxStudioScreen;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.screen.pojo.dto.MaxStudioScreenDTO;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * <p>
@@ -20,4 +23,15 @@ public interface MaxStudioScreenService extends IService<MaxStudioScreen> {
 
     MaxStudioScreen selectByUrl(String url);
 
+
+    List<MaxStudioScreen> selectById(Long catalogueId);
+
+    List<MaxStudioScreen> selectByPid(Long parentId);
+
+    void removeByScreenPid(Long parentId);
+
+    MaxStudioScreen getByName(String screenName);
+
+
+    Page<MaxStudioScreen> pageScreen(Long page, Long pageSize);
 }

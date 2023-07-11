@@ -4,6 +4,8 @@ import com.screen.pojo.MaxStudioCatalogue;
 import com.baomidou.mybatisplus.extension.service.IService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 大屏管理表 服务类
@@ -14,5 +16,10 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public interface MaxStudioCatalogueService extends IService<MaxStudioCatalogue> {
+    List<MaxStudioCatalogue> getByPid(Long id);
 
+    void removeByPid(Long id);
+
+
+    void selectScreens(Long id);
 }
