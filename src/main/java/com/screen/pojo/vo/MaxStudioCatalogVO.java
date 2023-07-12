@@ -1,6 +1,5 @@
 package com.screen.pojo.vo;
 
-import com.screen.pojo.MaxStudioScreen;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,8 +27,17 @@ public class MaxStudioCatalogVO {
     /**
      * 联表查询大屏集合
      */
-    private List<MaxStudioScreen> maxStudioScreens;
-
+    private List<MaxStudioCatalogueScreenVO> maxStudioScreens;
+//    /**
+//     * 大屏名称
+//     */
+//    private String screenName;
+//
+//
+//    /**
+//     * 大屏地址
+//     */
+//    private String accessAddress;
     /**
      * 子目录列表
      */

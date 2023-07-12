@@ -21,5 +21,6 @@ public interface MaxStudioCatalogueService extends IService<MaxStudioCatalogue> 
     void removeByPid(Long id);
 
 
-    void selectScreens(Long id);
+//    void selectScreens(Long id);
+//}
 }

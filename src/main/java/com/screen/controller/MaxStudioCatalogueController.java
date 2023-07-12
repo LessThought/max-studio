@@ -8,6 +8,7 @@ import cn.hutool.core.lang.tree.TreeUtil;
 import com.screen.pojo.MaxStudioCatalogue;
 import com.screen.pojo.MaxStudioScreen;
 import com.screen.pojo.vo.MaxStudioCatalogVO;
+import com.screen.pojo.vo.MaxStudioCatalogueScreenVO;
 import com.screen.result.R;
 import com.screen.service.MaxStudioCatalogueService;
 import com.screen.service.MaxStudioScreenService;
@@ -18,6 +19,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -49,9 +51,20 @@ public class MaxStudioCatalogueController {
         list1.forEach(maxStudioCatalogue -> {
             log.info("catalogue:{}",maxStudioCatalogue);
             MaxStudioCatalogVO catalogVO = new MaxStudioCatalogVO();
-            maxStudioCatalogueService.selectScreens(maxStudioCatalogue.getId());
+
+//            maxStudioScreenService.getById(maxStudioCatalogue.getId());
+            List<MaxStudioCatalogueScreenVO> screens = maxStudioScreenService.getScreens(maxStudioCatalogue.getId());
+            MaxStudioCatalogueScreenVO maxStudioCatalogueScreenVO = new MaxStudioCatalogueScreenVO();
+            List<MaxStudioCatalogueScreenVO> maxStudioScreens = new ArrayList<>();
+            screens.forEach(screen -> {
+                BeanUtils.copyProperties(screen,maxStudioCatalogueScreenVO);
+                maxStudioScreens.add(maxStudioCatalogueScreenVO);
+
+            });
+            catalogVO.setMaxStudioScreens(maxStudioScreens);
             BeanUtils.copyProperties(maxStudioCatalogue, catalogVO);
-            lists.add(new MaxStudioCatalogVO(catalogVO.getId(), catalogVO.getPid(),catalogVO.getName(),null ,null));
+                    System.out.println(catalogVO.toString());
+            lists.add(new MaxStudioCatalogVO(catalogVO.getId(), catalogVO.getPid(),catalogVO.getName(),catalogVO.getMaxStudioScreens() ,null));
         }
     );
 
@@ -80,7 +93,7 @@ public class MaxStudioCatalogueController {
             tree.setId(node.getId().toString());
             tree.setName(node.getName());
             tree.setParentId(node.getPid().toString());
-//            tree.putExtra("",);
+            tree.putExtra("大屏信息",node.getMaxStudioScreens());
 
         });
 

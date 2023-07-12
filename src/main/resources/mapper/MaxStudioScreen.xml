@@ -35,4 +35,19 @@
         where screen_name = #{name}
     </select>
 
+    <resultMap id="baseResult" type="com.screen.pojo.vo.MaxStudioCatalogueScreenVO">
+        <result column="screen_name" property="screenName"
+                jdbcType="VARCHAR" />
+        <result column="access_address" property="accessAddress"
+                jdbcType="INTEGER" />
+    </resultMap>
+
+    <select id="getScreens"  resultMap="baseResult">
+        select b.screen_name,b.access_address
+        from max_studio_catalogue as a left join max_studio_screen as b on a.id = b.catalog_id
+        <where>
+            a.id = #{id} and b.catalog_id = #{id}
+        </where>
+    </select>
+
 </mapper>

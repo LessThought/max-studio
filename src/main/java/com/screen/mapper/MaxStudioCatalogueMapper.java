@@ -17,5 +17,5 @@ public interface MaxStudioCatalogueMapper extends BaseMapper<MaxStudioCatalogue>
 
     void removeByPid(Long id);
 
-    void selectScreens(Long id);
+//    void selectScreens(Long id);
 }

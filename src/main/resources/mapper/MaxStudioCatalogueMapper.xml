@@ -17,11 +17,5 @@
     </delete>
 
 
-<!--    <select id="selectScreens"  parameterMap="com.screen.pojo.MaxStudioCatalogue">-->
-<!--        select b.screen_name,b.access_address-->
-<!--        from max_studio_catalogue as a, max_studio_screen as b-->
-<!--        where b.catalog_id = a.id-->
-<!--    </select>-->
-
 
 </mapper>

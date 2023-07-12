@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -43,7 +42,7 @@ public class MaxStudioShareController {
      */
     @PostMapping("/createLogoQRCodes")
     @ApiOperation("增加分享")
-    public R<String> creatQRCodes(@RequestParam("url") String url, @RequestParam("name") String pictureFileName, HttpServletResponse response) {
+    public R<String> creatQRCodes(@RequestParam("url") String url, @RequestParam("name") String pictureFileName) {
         MaxStudioScreen maxStudioScreen = maxStudioScreenService.selectByUrl(url);
         //二维码图片存放的本地路径
         String destPath = "D:\\SoftLocation\\Code\\picture\\" + pictureFileName + ".jpg";

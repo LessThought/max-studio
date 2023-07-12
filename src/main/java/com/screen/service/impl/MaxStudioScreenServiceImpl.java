@@ -6,6 +6,7 @@ import com.screen.mapper.MaxStudioCatalogueMapper;
 import com.screen.mapper.MaxStudioScreenMapper;
 import com.screen.pojo.MaxStudioScreen;
 import com.screen.pojo.dto.MaxStudioScreenDTO;
+import com.screen.pojo.vo.MaxStudioCatalogueScreenVO;
 import com.screen.service.MaxStudioScreenService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -78,6 +79,15 @@ public class MaxStudioScreenServiceImpl extends ServiceImpl<MaxStudioScreenMappe
         Page<MaxStudioScreen> page1 = new Page<>(page,pageSize);
         Page<MaxStudioScreen> page2 = maxStudioScreenMapper.selectPage(page1, null);
         return page2;
+    }
+
+    /**
+     * 联表查询
+     * @param id
+     */
+    @Override
+    public List<MaxStudioCatalogueScreenVO> getScreens(Long id) {
+        return maxStudioScreenMapper.getScreens(id);
     }
 
 

@@ -28,8 +28,8 @@ public class MaxStudioCatalogueServiceImpl extends ServiceImpl<MaxStudioCatalogu
         catalogueMapper.removeByPid(id);
     }
 
-    @Override
-    public void selectScreens(Long id) {
-        catalogueMapper.selectScreens(id);
-    }
+//    @Override
+//    public void selectScreens(Long id) {
+//        catalogueMapper.selectScreens(id);
+//    }
 }
