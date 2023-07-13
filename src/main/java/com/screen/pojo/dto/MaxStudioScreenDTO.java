@@ -16,10 +16,7 @@ public class MaxStudioScreenDTO implements Serializable {
      */
     private Long id;
 
-//    /**
-//     * 分享Id
-//     */
-//    private Long shareId;
+
 
     /**
      * 大屏名称
@@ -36,8 +33,5 @@ public class MaxStudioScreenDTO implements Serializable {
      */
     private String accessAddress;
 
-//    /**
-//     * 大屏分享 1：可分享 0：不可分享
-//     */
-//    private String screenShare;
+
 }

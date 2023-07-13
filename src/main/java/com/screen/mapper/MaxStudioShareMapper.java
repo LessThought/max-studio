@@ -11,4 +11,6 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MaxStudioShareMapper extends BaseMapper<MaxStudioShare> {
     void addShare(Long screenId,String qrcodeAddress);
+
+
 }

@@ -29,7 +29,6 @@ public interface MaxStudioScreenMapper extends BaseMapper<MaxStudioScreen> {
 
     /**
      * 根据目录id查询到集合
-     * @param catalogueId
      * @return
      */
     List<MaxStudioScreen> selectById();

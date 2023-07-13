@@ -2,9 +2,10 @@ package com.screen.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.screen.mapper.MaxStudioCatalogueMapper;
+import com.screen.common.constant.StatusConstant;
 import com.screen.mapper.MaxStudioScreenMapper;
 import com.screen.pojo.MaxStudioScreen;
+import com.screen.pojo.dto.MaxStudioLargeScreenDTO;
 import com.screen.pojo.dto.MaxStudioScreenDTO;
 import com.screen.pojo.vo.MaxStudioCatalogueScreenVO;
 import com.screen.service.MaxStudioScreenService;
@@ -12,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,14 +25,40 @@ import java.util.List;
 public class MaxStudioScreenServiceImpl extends ServiceImpl<MaxStudioScreenMapper, MaxStudioScreen> implements MaxStudioScreenService {
 
     @Autowired
-    private MaxStudioScreenMapper maxStudioManagementMapper;
-
-    @Autowired
-    private MaxStudioCatalogueMapper maxStudioCatalogueMapper;
-
-    @Autowired
     private MaxStudioScreenMapper maxStudioScreenMapper;
 
+    /**
+     * 查询大屏集合
+     * @return
+     */
+    @Override
+    public List<MaxStudioLargeScreenDTO> listScreen() {
+
+        List<MaxStudioScreen> largeScreens = maxStudioScreenMapper.selectById();
+
+
+        List<MaxStudioLargeScreenDTO> objects = new ArrayList<>();
+        largeScreens.forEach(largeScreen -> {
+            MaxStudioLargeScreenDTO largeScreenDTO = new MaxStudioLargeScreenDTO ();
+            if (largeScreen.getCurrentStatus() == 1) {
+                largeScreenDTO.setCurrentStatus(StatusConstant.DEVELOPING);
+            } else if ((largeScreen.getCurrentStatus() == 2)) {
+                largeScreenDTO.setCurrentStatus(StatusConstant.TESTING);
+            } else {
+                largeScreenDTO.setCurrentStatus(StatusConstant.APPLICATION);
+            }
+//                (largeScreen.getCurrentStatus() == 2 )? largeScreenDTO.setCurrentStatus(StatusConstant.TESTING) :largeScreenDTO.setCurrentStatus(StatusConstant.APPLICATION);
+
+            largeScreenDTO.setId(largeScreen.getId());
+            largeScreenDTO.setScreenName(largeScreen.getScreenName());
+            largeScreenDTO.setAccessAddress(largeScreen.getAccessAddress());
+            largeScreenDTO.setCreateTime(largeScreen.getCreateTime());
+            largeScreenDTO.setCatalogId(largeScreen.getCatalogId());
+            objects.add(largeScreenDTO);
+        });
+
+        return objects;
+    }
     /**
      * 新增大屏
      * @param managementDTO
@@ -55,6 +83,7 @@ public class MaxStudioScreenServiceImpl extends ServiceImpl<MaxStudioScreenMappe
      */
     @Override
     public List<MaxStudioScreen> selectById() {
+
         return maxStudioScreenMapper.selectById();
     }
 
@@ -108,43 +137,6 @@ public class MaxStudioScreenServiceImpl extends ServiceImpl<MaxStudioScreenMappe
     public List<MaxStudioCatalogueScreenVO> getScreens(Long id) {
         return maxStudioScreenMapper.getScreens(id);
     }
-
-
-//    /**
-//     * 根据id删除大屏
-//     * @param id
-//     * @return
-//     */
-//    public R<MaxStudioScreen> deleteById(Long id) {
-//        if (maxStudioCatalogueMapper.selectById(id) == null) {
-//            throw new DeletionNotAllowedException(MessageConstant.SCREEN_NOT_FOUND);
-//        }
-//        maxStudioManagementMapper.deleteById(id);
-//        return R.success();
-//    }
-//
-//
-//    /**
-//     * 根据id查询大屏
-//     * @param id
-//     * @return
-//     */
-//    public R<MaxStudioScreen> getMaxStudioScreen(Long id) {
-//        // TODO
-//
-//        return R.success();
-//    }
-//
-//    /**
-//     * 更新大屏
-//     * @param management
-//     * @return
-//     */
-//    public R<MaxStudioScreen> updateByScreenId(MaxStudioScreen management) {
-//        // TODO
-//        return R.success();
-//    }
-
 
 
 }

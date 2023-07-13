@@ -3,7 +3,6 @@ package com.screen.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.screen.common.constant.MessageConstant;
-import com.screen.common.constant.StatusConstant;
 import com.screen.common.exception.ScreenNotFoundException;
 import com.screen.pojo.MaxStudioScreen;
 import com.screen.pojo.dto.MaxStudioLargeScreenDTO;
@@ -15,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -69,30 +67,10 @@ public class MaxStudioScreenController {
     @RequestMapping("/list")
     @ApiOperation("查询所有大屏")
     public R<List<MaxStudioLargeScreenDTO>> getScreen() {
-        List<MaxStudioScreen> largeScreens = maxStudioScreenService.selectById();
 
+        List<MaxStudioLargeScreenDTO> maxStudioLargeScreenDTOS = maxStudioScreenService.listScreen();
 
-        List<MaxStudioLargeScreenDTO> objects = new ArrayList<>();
-        largeScreens.forEach(largeScreen -> {
-            MaxStudioLargeScreenDTO largeScreenDTO = new MaxStudioLargeScreenDTO ();
-            if (largeScreen.getCurrentStatus() == 1) {
-                largeScreenDTO.setCurrentStatus(StatusConstant.DEVELOPING);
-            } else if ((largeScreen.getCurrentStatus() == 2)) {
-                    largeScreenDTO.setCurrentStatus(StatusConstant.TESTING);
-            } else {
-                    largeScreenDTO.setCurrentStatus(StatusConstant.APPLICATION);
-                }
-            //    (largeScreen.getCurrentStatus() == 2 )? largeScreenDTO.setCurrentStatus(StatusConstant.TESTING) :largeScreenDTO.setCurrentStatus(StatusConstant.APPLICATION);
-
-            largeScreenDTO.setId(largeScreen.getId());
-            largeScreenDTO.setScreenName(largeScreen.getScreenName());
-            largeScreenDTO.setAccessAddress(largeScreen.getAccessAddress());
-            largeScreenDTO.setCreateTime(largeScreen.getCreateTime());
-            largeScreenDTO.setCatalogId(largeScreen.getCatalogId());
-            objects.add(largeScreenDTO);
-        });
-
-        return R.success(objects);
+        return R.success(maxStudioLargeScreenDTOS);
     }
 
 

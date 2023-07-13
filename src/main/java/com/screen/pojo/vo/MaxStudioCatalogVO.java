@@ -28,16 +28,7 @@ public class MaxStudioCatalogVO {
      * 联表查询大屏集合
      */
     private List<MaxStudioCatalogueScreenVO> maxStudioScreens;
-//    /**
-//     * 大屏名称
-//     */
-//    private String screenName;
-//
-//
-//    /**
-//     * 大屏地址
-//     */
-//    private String accessAddress;
+
     /**
      * 子目录列表
      */

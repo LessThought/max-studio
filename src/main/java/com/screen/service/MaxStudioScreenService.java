@@ -3,6 +3,7 @@ package com.screen.service;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.screen.pojo.MaxStudioScreen;
+import com.screen.pojo.dto.MaxStudioLargeScreenDTO;
 import com.screen.pojo.dto.MaxStudioScreenDTO;
 import com.screen.pojo.vo.MaxStudioCatalogueScreenVO;
 import org.springframework.stereotype.Service;
@@ -37,4 +38,6 @@ public interface MaxStudioScreenService extends IService<MaxStudioScreen> {
     Page<MaxStudioScreen> pageScreen(Long page, Long pageSize);
 
     List<MaxStudioCatalogueScreenVO> getScreens(Long id);
+
+    List<MaxStudioLargeScreenDTO> listScreen();
 }
