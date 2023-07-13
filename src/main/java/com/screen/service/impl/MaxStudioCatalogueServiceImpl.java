@@ -18,11 +18,21 @@ public class MaxStudioCatalogueServiceImpl extends ServiceImpl<MaxStudioCatalogu
 
     @Autowired
     private MaxStudioCatalogueMapper catalogueMapper;
+
+    /**
+     * 根据id查询目录
+     * @param id
+     * @return
+     */
     @Override
     public List<MaxStudioCatalogue> getByPid(Long id) {
         return catalogueMapper.getByPid(id);
     }
 
+    /**
+     * 根据id删除目录
+     * @param id
+     */
     @Override
     public void removeByPid(Long id) {
         catalogueMapper.removeByPid(id);

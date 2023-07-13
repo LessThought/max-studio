@@ -38,7 +38,10 @@ public class MaxStudioCatalogueController {
     @Autowired
     private MaxStudioCatalogueService maxStudioCatalogueService;
 
-
+    /**
+     * 层级目录查询
+     * @return
+     */
     @RequestMapping("/list")
     @ApiOperation("目录列表展示")
     public R<List<Tree<String>>> getCatalogue() {
@@ -101,6 +104,11 @@ public class MaxStudioCatalogueController {
     }
 
 
+    /**
+     * 根据传入的id删除目录
+     * @param type
+     * @return
+     */
     @DeleteMapping("/delete")
     @ApiOperation("删除目录")
     public R<String> deleteByCatalogueId(@RequestParam("id") Long type) {
@@ -119,6 +127,11 @@ public class MaxStudioCatalogueController {
         return R.success();
     }
 
+    /**
+     * 传入Json添加目录
+     * @param catalog
+     * @return
+     */
     @PostMapping("/add")
     @ApiOperation("添加目录")
     public R<MaxStudioCatalogue> addCatalogue(@RequestBody MaxStudioCatalogue catalog) {

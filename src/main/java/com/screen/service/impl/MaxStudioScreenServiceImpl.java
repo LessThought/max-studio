@@ -59,21 +59,41 @@ public class MaxStudioScreenServiceImpl extends ServiceImpl<MaxStudioScreenMappe
         return maxStudioScreenMapper.selectById(catalogueId);
     }
 
+    /**
+     * 根据id查询大屏列表
+     * @param parentId
+     * @return
+     */
     @Override
     public List<MaxStudioScreen> selectByPid(Long parentId) {
         return maxStudioScreenMapper.selectByPid(parentId);
     }
 
+    /**
+     * 根据id删除大屏
+     * @param parentId
+     */
     @Override
     public void removeByScreenPid(Long parentId) {
         maxStudioScreenMapper.removeByScreenPid(parentId);
     }
 
+    /**
+     * 根据名称查询大屏
+     * @param screenName
+     * @return
+     */
     @Override
     public MaxStudioScreen getByName(String screenName) {
         return maxStudioScreenMapper.getByName(screenName);
     }
 
+    /**
+     * 分页查询
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @Override
     public Page<MaxStudioScreen> pageScreen(Long page, Long pageSize) {
         Page<MaxStudioScreen> page1 = new Page<>(page,pageSize);

@@ -1,10 +1,9 @@
 package com.screen.service.impl;
 
-import com.screen.mapper.MaxStudioScreenMapper;
-import com.screen.pojo.MaxStudioShare;
-import com.screen.mapper.MaxStudioShareMapper;
-import com.screen.service.MaxStudioShareService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.screen.mapper.MaxStudioShareMapper;
+import com.screen.pojo.MaxStudioShare;
+import com.screen.service.MaxStudioShareService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,13 @@ public class MaxStudioShareServiceImpl extends ServiceImpl<MaxStudioShareMapper,
     @Autowired
     private MaxStudioShareMapper maxStudioShareMapper;
 
-    @Autowired
-    private MaxStudioScreenMapper maxStudioScreenMapper;
+
+
+    /**
+     * 新增分享
+     * @param screenId
+     * @param qrcodeAddress
+     */
     @Override
     public void addShare(Long screenId,String qrcodeAddress) {
 

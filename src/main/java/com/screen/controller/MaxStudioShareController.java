@@ -12,11 +12,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -64,6 +62,37 @@ public class MaxStudioShareController {
         return  R.success("添加分享成功");
     }
 
+    /**
+     * 根据url生成二维码图片并跳转到二维码url
+     * @param url
+     * @param pictureFileName
+     * @param response
+     * @return
+     */
+    @PutMapping("save")
+    @ApiOperation("增加分享")
+    public R<String> creatQRCodeTOUrl(@RequestParam("url") String url, @RequestParam("name") String pictureFileName, HttpServletResponse response) {
+        MaxStudioScreen Screen = maxStudioScreenService.selectByUrl(url);
+        //二维码图片存放的本地路径
+        String destPath = "D:\\SoftLocation\\Code\\picture\\" + pictureFileName + ".jpg";
+        String text = "https://blog.csdn.net/weixin_43763430";
+        try {
+            //把url解析为二维码
+            QrCodeUtils.encode(text,null,response.getOutputStream(),true);
+            Long id = Screen.getId();
+            MaxStudioShare maxStudioShare = MaxStudioShare.builder()
+                    .screenId(id)
+                    .qrcodeAddress(destPath)
+                    .build();
+            log.info("destPath:{}",destPath);
+            Long screenId = maxStudioShare.getScreenId();
+            String qrcodeAddress = maxStudioShare.getQrcodeAddress();
+            maxStudioShareService.addShare(screenId,qrcodeAddress);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return  R.success("添加分享成功");
+    }
 
     @RequestMapping("/list")
     @ApiOperation("分享列表")

@@ -30,6 +30,11 @@ public class MaxStudioScreenController {
     @Autowired
     private MaxStudioCatalogueService maxStudioCatalogueService;
 
+    /**
+     * 传入Json添加大屏
+     * @param maxStudioScreen
+     * @return
+     */
     @PostMapping("/save")
     @ApiOperation("增加大屏")
     public R<MaxStudioScreen> saveScreen(@RequestBody MaxStudioScreen maxStudioScreen) {
@@ -41,6 +46,11 @@ public class MaxStudioScreenController {
     }
 
 
+    /**
+     * 根据名称查询大屏对象
+     * @param screenName
+     * @return
+     */
     @GetMapping("/getScreen")
     @ApiOperation("大屏名称查询")
     public R<MaxStudioScreen> getScreenByName(@RequestParam("name") String screenName) {
@@ -61,6 +71,12 @@ public class MaxStudioScreenController {
 //    }
 
 
+    /**
+     * 分页查询大屏
+     * @param page
+     * @param pageSize
+     * @return
+     */
     @RequestMapping("/listScreens")
     @ApiOperation("分页查询大屏")
     public R<Page<MaxStudioScreen>> listScreen(Long page , Long pageSize) {
@@ -68,6 +84,11 @@ public class MaxStudioScreenController {
         return R.success(maxStudioScreenPage);
     }
 
+    /**
+     * 根据id删除大屏
+     * @param id
+     * @return
+     */
     @DeleteMapping("/delete/{id}")
     @ApiOperation("删除大屏")
     public R<String> deleteById(@PathVariable Long id) {
@@ -75,7 +96,11 @@ public class MaxStudioScreenController {
         return R.success("删除成功");
     }
 
-
+    /**
+     * 传入Json大屏
+     * @param largeScreen
+     * @return
+     */
     @PutMapping("/update")
     @ApiOperation("更新大屏")
     public R<MaxStudioScreen> updateScreen(@RequestBody MaxStudioScreen largeScreen) {

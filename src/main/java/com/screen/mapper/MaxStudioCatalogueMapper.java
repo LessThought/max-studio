@@ -13,8 +13,17 @@ import java.util.List;
 @Mapper
 public interface MaxStudioCatalogueMapper extends BaseMapper<MaxStudioCatalogue> {
 
+    /**
+     * 根据pid查询目录集合数据
+     * @param id
+     * @return
+     */
     List<MaxStudioCatalogue> getByPid(Long id);
 
+    /**
+     * 根据id删除目录数据
+     * @param id
+     */
     void removeByPid(Long id);
 
 //    void selectScreens(Long id);
