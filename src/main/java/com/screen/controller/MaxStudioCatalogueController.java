@@ -55,15 +55,19 @@ public class MaxStudioCatalogueController {
             log.info("catalogue:{}",maxStudioCatalogue);
             MaxStudioCatalogVO catalogVO = new MaxStudioCatalogVO();
 
-//            maxStudioScreenService.getById(maxStudioCatalogue.getId());
+        //根据id连表查询到大屏
             List<MaxStudioCatalogueScreenVO> screens = maxStudioScreenService.getScreens(maxStudioCatalogue.getId());
             MaxStudioCatalogueScreenVO maxStudioCatalogueScreenVO = new MaxStudioCatalogueScreenVO();
+            //创建MaxStudioCatalogueScreenVO集合
             List<MaxStudioCatalogueScreenVO> maxStudioScreens = new ArrayList<>();
             screens.forEach(screen -> {
+                //大屏对象复制到maxStudioCatalogueScreenVO对象
                 BeanUtils.copyProperties(screen,maxStudioCatalogueScreenVO);
+                //将maxStudioCatalogueScreenVO对象添加到集合中
                 maxStudioScreens.add(maxStudioCatalogueScreenVO);
 
             });
+            //将maxStudioCatalogueScreenVO对象集合通过set方法来复制值
             catalogVO.setMaxStudioScreens(maxStudioScreens);
             BeanUtils.copyProperties(maxStudioCatalogue, catalogVO);
                     System.out.println(catalogVO.toString());
