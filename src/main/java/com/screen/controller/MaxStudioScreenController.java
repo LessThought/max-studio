@@ -3,10 +3,11 @@ package com.screen.controller;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.screen.common.constant.MessageConstant;
+import com.screen.common.constant.StatusConstant;
 import com.screen.common.exception.ScreenNotFoundException;
 import com.screen.pojo.MaxStudioScreen;
+import com.screen.pojo.dto.MaxStudioLargeScreenDTO;
 import com.screen.result.R;
-import com.screen.service.MaxStudioCatalogueService;
 import com.screen.service.MaxStudioScreenService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -14,12 +15,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author 小柴
  * @since 2023-07-06
  */
 @RestController
-@RequestMapping("/largeScreen")
+@RequestMapping("/screen")
 @Slf4j
 @Api(tags = "大屏管理")
 public class MaxStudioScreenController {
@@ -27,15 +31,13 @@ public class MaxStudioScreenController {
     @Autowired
     private MaxStudioScreenService maxStudioScreenService;
 
-    @Autowired
-    private MaxStudioCatalogueService maxStudioCatalogueService;
 
     /**
      * 传入Json添加大屏
      * @param maxStudioScreen
      * @return
      */
-    @PostMapping("/save")
+    @PostMapping("/add")
     @ApiOperation("增加大屏")
     public R<MaxStudioScreen> saveScreen(@RequestBody MaxStudioScreen maxStudioScreen) {
 
@@ -51,7 +53,7 @@ public class MaxStudioScreenController {
      * @param screenName
      * @return
      */
-    @GetMapping("/getScreen")
+    @GetMapping("/listByName")
     @ApiOperation("大屏名称查询")
     public R<MaxStudioScreen> getScreenByName(@RequestParam("name") String screenName) {
         MaxStudioScreen screen = maxStudioScreenService.getByName(screenName);
@@ -60,15 +62,39 @@ public class MaxStudioScreenController {
         }
         return R.success(screen);
     }
+    /**
+     * 查询list
+     * @return
+     */
+    @RequestMapping("/list")
+    @ApiOperation("查询所有大屏")
+    public R<List<MaxStudioLargeScreenDTO>> getScreen() {
+        List<MaxStudioScreen> largeScreens = maxStudioScreenService.selectById();
 
 
-//    @RequestMapping("/getScreens/{catalogueId}")
-//    @ApiOperation("查询大屏")
-//    public R<List<MaxStudioScreen>> getScreen(@PathVariable Long catalogueId) {
-//        List<MaxStudioScreen> largeScreens = maxStudioScreenService.selectById(catalogueId);
-//
-//        return R.success(largeScreens);
-//    }
+        List<MaxStudioLargeScreenDTO> objects = new ArrayList<>();
+        largeScreens.forEach(largeScreen -> {
+            MaxStudioLargeScreenDTO largeScreenDTO = new MaxStudioLargeScreenDTO ();
+            if (largeScreen.getCurrentStatus() == 1) {
+                largeScreenDTO.setCurrentStatus(StatusConstant.DEVELOPING);
+            } else if ((largeScreen.getCurrentStatus() == 2)) {
+                    largeScreenDTO.setCurrentStatus(StatusConstant.TESTING);
+            } else {
+                    largeScreenDTO.setCurrentStatus(StatusConstant.APPLICATION);
+                }
+            //    (largeScreen.getCurrentStatus() == 2 )? largeScreenDTO.setCurrentStatus(StatusConstant.TESTING) :largeScreenDTO.setCurrentStatus(StatusConstant.APPLICATION);
+
+            largeScreenDTO.setId(largeScreen.getId());
+            largeScreenDTO.setScreenName(largeScreen.getScreenName());
+            largeScreenDTO.setAccessAddress(largeScreen.getAccessAddress());
+            largeScreenDTO.setCreateTime(largeScreen.getCreateTime());
+            largeScreenDTO.setCatalogId(largeScreen.getCatalogId());
+            objects.add(largeScreenDTO);
+        });
+
+        return R.success(objects);
+    }
+
 
 
     /**
@@ -95,6 +121,7 @@ public class MaxStudioScreenController {
         maxStudioScreenService.removeById(id);
         return R.success("删除成功");
     }
+
 
     /**
      * 传入Json大屏

@@ -14,4 +14,13 @@ public class StatusConstant {
 
     public static final String UNSHAREABLE = "0";
 
+    /**
+     * 1. 开发中  2. 测试中  3. 应用中
+     */
+    public static final String DEVELOPING = "开发中";
+
+    public static final String TESTING = "测试中";
+
+    public static final String APPLICATION = "应用中";
+
 }

@@ -22,7 +22,7 @@ import java.util.List;
  * @since 2023-07-06
  */
 @RestController
-@RequestMapping("/screenShare")
+@RequestMapping("/share")
 @Slf4j
 @Api(tags = "分享管理")
 public class MaxStudioShareController {
@@ -38,7 +38,7 @@ public class MaxStudioShareController {
      * @param pictureFileName
      * @return
      */
-    @PostMapping("/createLogoQRCodes")
+    @PostMapping("/add")
     @ApiOperation("增加分享")
     public R<String> creatQRCodes(@RequestParam("url") String url, @RequestParam("name") String pictureFileName) {
         MaxStudioScreen maxStudioScreen = maxStudioScreenService.selectByUrl(url);
@@ -69,7 +69,7 @@ public class MaxStudioShareController {
      * @param response
      * @return
      */
-    @PutMapping("save")
+    @PutMapping("/save")
     @ApiOperation("增加分享")
     public R<String> creatQRCodeTOUrl(@RequestParam("url") String url, @RequestParam("name") String pictureFileName, HttpServletResponse response) {
         MaxStudioScreen Screen = maxStudioScreenService.selectByUrl(url);

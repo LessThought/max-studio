@@ -96,7 +96,7 @@ public class MaxStudioCatalogueController {
             tree.setId(node.getId().toString());
             tree.setName(node.getName());
             tree.setParentId(node.getPid().toString());
-            tree.putExtra("大屏信息",node.getMaxStudioScreens());
+            tree.putExtra("screenList",node.getMaxStudioScreens());
 
         });
 

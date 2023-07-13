@@ -32,7 +32,7 @@ public interface MaxStudioScreenMapper extends BaseMapper<MaxStudioScreen> {
      * @param catalogueId
      * @return
      */
-    List<MaxStudioScreen> selectById(Long catalogueId);
+    List<MaxStudioScreen> selectById();
 
     /**
      * 根据pid查询集合

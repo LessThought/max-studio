@@ -25,7 +25,7 @@ public interface MaxStudioScreenService extends IService<MaxStudioScreen> {
     MaxStudioScreen selectByUrl(String url);
 
 
-    List<MaxStudioScreen> selectById(Long catalogueId);
+    List<MaxStudioScreen> selectById();
 
     List<MaxStudioScreen> selectByPid(Long parentId);
 

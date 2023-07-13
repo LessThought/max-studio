@@ -51,12 +51,11 @@ public class MaxStudioScreenServiceImpl extends ServiceImpl<MaxStudioScreenMappe
 
     /**
      * 根据目录id查询
-     * @param catalogueId
      * @return
      */
     @Override
-    public List<MaxStudioScreen> selectById(Long catalogueId) {
-        return maxStudioScreenMapper.selectById(catalogueId);
+    public List<MaxStudioScreen> selectById() {
+        return maxStudioScreenMapper.selectById();
     }
 
     /**
