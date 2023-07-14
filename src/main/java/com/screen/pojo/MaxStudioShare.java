@@ -26,10 +26,7 @@ public class MaxStudioShare implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-//    /**
-//     * 分享id
-//     */
-//    private Long shareId;
+
     /**
      * 大屏id，唯一
      */

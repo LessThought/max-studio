@@ -15,7 +15,7 @@
     </select>
 
     <select id="selectById" resultType="com.screen.pojo.MaxStudioScreen">
-        select id,screen_name,catalog_id,current_status,access_address,is_deleted,create_time from max_studio_screen
+        select id,screen_name,catalog_id,current_status,access_address,is_deleted,create_time from max_studio_screen where is_deleted = 0
     </select>
 
     <select id="selectByPid" resultType="com.screen.pojo.MaxStudioScreen">
@@ -45,7 +45,7 @@
         select b.screen_name,b.access_address
         from max_studio_catalogue as a left join max_studio_screen as b on a.id = b.catalog_id
         <where>
-            a.id = #{id} and b.catalog_id = #{id}
+            a.id = #{id} and b.catalog_id = #{id} and is_deleted = 0
         </where>
     </select>
 
