@@ -31,7 +31,7 @@
 
     <select id="getByName" resultType="com.screen.pojo.MaxStudioScreen">
         select id,screen_name,catalog_id,current_status,access_address,is_deleted from max_studio_screen
-        where screen_name = #{name}
+        where screen_name like '%' || #{name} || '%'
     </select>
 
     <resultMap id="baseResult" type="com.screen.pojo.vo.MaxStudioCatalogueScreenVO">

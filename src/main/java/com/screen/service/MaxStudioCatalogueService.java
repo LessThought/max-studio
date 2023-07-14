@@ -24,8 +24,4 @@ public interface MaxStudioCatalogueService extends IService<MaxStudioCatalogue> 
     List<Tree<String>> showCatalogue(List<MaxStudioCatalogue> list1);
 
 
-
-
-//    void selectScreens(Long id);
-//}
 }

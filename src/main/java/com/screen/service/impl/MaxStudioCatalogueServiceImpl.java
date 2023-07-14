@@ -49,7 +49,11 @@ public class MaxStudioCatalogueServiceImpl extends ServiceImpl<MaxStudioCatalogu
                     List<MaxStudioCatalogueScreenVO> maxStudioScreens = new ArrayList<>();
                     screens.forEach(screen -> {
                         //大屏对象复制到maxStudioCatalogueScreenVO对象
-                        BeanUtils.copyProperties(screen,maxStudioCatalogueScreenVO);
+//                        BeanUtils.copyProperties(screen,maxStudioCatalogueScreenVO);
+                        String screenName = screen.getScreenName();
+                        String accessAddress = screen.getAccessAddress();
+                        maxStudioCatalogueScreenVO.setScreenName(screenName);
+                        maxStudioCatalogueScreenVO.setAccessAddress(accessAddress);
                         //将maxStudioCatalogueScreenVO对象添加到集合中
                         maxStudioScreens.add(maxStudioCatalogueScreenVO);
 
